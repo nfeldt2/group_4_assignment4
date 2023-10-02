@@ -5,9 +5,9 @@ ArrayList<Trail> trails = new ArrayList<Trail>();
 
 void setup() {
   size(800, 600);
-  p1 = new Planet(-200, 200, 40, color(31, 61, 212), 2, 80);
+  p1 = new Planet(-200, 200, 60, color(31, 61, 212), 2, 80);
   p1.satellite = new Satellite(p1, 80);
-  p2 = new Planet(-200, 400, 80, color(201, 28, 12), 1, 60);
+  p2 = new Planet(-200, 400, 120, color(201, 28, 12), 1, 60);
   p2.satellite = new Satellite(p2, 60);
 }
 
