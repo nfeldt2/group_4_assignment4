@@ -5,10 +5,10 @@ ArrayList<Trail> trails = new ArrayList<Trail>();
 
 void setup() {
   size(800, 600);
-  p1 = new Planet(-200, 200, 60, color(31, 61, 212), 2, 80);
+  p1 = new Planet(-200, 200, 60, color(31, 61, 212), 2);
   p1.satellite = new Satellite(p1, 80);
-  p2 = new Planet(-200, 400, 120, color(201, 28, 12), 1, 60);
-  p2.satellite = new Satellite(p2, 60);
+  p2 = new Planet(-200, 400, 100, color(201, 28, 12), 1);
+  p2.satellite = new Satellite(p2, 100);
 }
 
 void draw() {
@@ -27,7 +27,7 @@ void draw() {
   p2.satellite.orbit();
 
   // Random chance to spawn a meteor
-  if (random(1) < 0.02) {
+  if (random(1) < 0.01) {
     meteors.add(new Meteor(width, random(height)));
   }
   
@@ -60,5 +60,8 @@ void draw() {
     if (m.position.x + m.size < 0) {
       meteors.remove(i);
     }
+  }
+}
+
   }
 }
