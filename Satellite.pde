@@ -7,7 +7,7 @@ class Satellite {
     this.planet = planet;
     this.orbitRadius = orbitRadius;
     angle = random(TWO_PI); // start from a random angle
-    satelliteDiameter = random(10, 20);
+    satelliteDiameter = random(20, 30);
     float grayScale = random(100, 255);
     satelliteColor = color(grayScale, grayScale, grayScale, 150); // satellite will have transparency
     speed = random(1, 3);
