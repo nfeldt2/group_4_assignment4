@@ -3,6 +3,11 @@ Planet p2;
 ArrayList<Meteor> meteors = new ArrayList<Meteor>();
 ArrayList<Trail> trails = new ArrayList<Trail>();
 
+Star star1 = new Star(50, 50);
+Star star2 = new Star(100, 100);
+Star star3 = new Star(200, 200);
+Star star4 = new Star(100, 400);
+
 void setup() {
   size(800, 600);
   p1 = new Planet(-200, 200, 60, color(31, 61, 212), 2);
@@ -25,6 +30,11 @@ void draw() {
   p2.move();
   p2.satellite.display();
   p2.satellite.orbit();
+
+  star1.display();
+  star2.display();
+  star3.display();
+  star4.display();
 
   // Random chance to spawn a meteor
   if (random(1) < 0.01) {
