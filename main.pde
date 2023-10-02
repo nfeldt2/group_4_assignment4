@@ -10,7 +10,7 @@ void draw() {
   background(0);
   
   // spawn meteor
-  if (random(1) < 0.02) {
+  if (random(1) < 0.01) {
     meteors.add(new Meteor(width, random(height)));
   }
   
