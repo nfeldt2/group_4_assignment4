@@ -3,14 +3,13 @@ class Planet {
   float x, y, diameter, angle, speed;
   color planetColor;
 
-  Planet(float x, float y, float diameter, color planetColor, float speed, float orbitRadius) {
+  Planet(float x, float y, float diameter, color planetColor, float speed) {
     this.x = x;
     this.y = y;
     this.diameter = diameter;
     angle = 0;
     this.planetColor = planetColor;
     this.speed = speed;
-    satellite = new Satellite(this, orbitRadius);
   }
 
   void display() {
@@ -29,4 +28,5 @@ class Planet {
       x = -diameter/2 - 200; // reset the position when planet is 200px off-screen
     }
   }
-}
+}   
+
