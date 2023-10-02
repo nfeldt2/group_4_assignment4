@@ -1,6 +1,5 @@
 class Star {
   
-  PShape center;
   float xpos;
   float ypos;
 
@@ -10,8 +9,10 @@ class Star {
   boolean scaled;
 
   float rotationSpeed;
+  float rotationAngle;
   float[] speeds = {0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0};
-  boolean starDirection;
+  
+  int starDirection;
 
   color darkRed = color(139,0,0);
   color tangerineOrange = color(242, 133, 0);
@@ -31,16 +32,27 @@ class Star {
     scaleSize = (sizes[int(random(0, 7))]);
     hardScale = scaleSize;
 
-    starDirection = (((int(random(1, 100)))%2)==0);
+   starDirection = random(2) < 1 ? -1 : 1;
+    
+    
     rotationSpeed = (speeds[int(random(0, 10))]);
+    rotationAngle = 0;
+    
   }
 
-  void display(){
-    scale(0.5);
-    star_scale();
+  void display(float t){
+    
+    rotationAngle += (.005 * starDirection);
+    pushMatrix();
+    translate(xpos, ypos);
+    rotate(rotationAngle);
+    scale(0.5 * t);
+    translate(-xpos, -ypos);
+    
+    //star_scale();
     star_color();
     drawStar();
-    star_direction();
+    popMatrix();
   }
 
   void drawStar(){
@@ -61,17 +73,6 @@ class Star {
   void star_color() {
     stroke(255);
     fill(starColor);
-  }
-
-  void star_direction() {
-    if(starDirection) {
-      rotate(rotationSpeed);
-      rotationSpeed = rotationSpeed + 0.1;
-    }
-    if(!starDirection) {
-      rotate(rotationSpeed);
-      rotationSpeed = rotationSpeed - 0.1;
-    }  
   }
 
   void star_scale() {
