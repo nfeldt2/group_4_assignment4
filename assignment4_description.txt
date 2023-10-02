@@ -8,3 +8,7 @@ Planet.pde (Jaden Wood)
 
 Satellite.pde (Jaden Wood)
   Planet is a field within this object. This aids in determining the translational motion of the Satellite. The Satellite class features two methods, display() and orbit(). orbit() adjusts its angle relative to the Planet.
+
+Meteor.pde (Nathan Feldt)
+  This meteor class prints out a meteor that moves from right to left with random speed and direction (random angle of direction (still moves right to left)). The meteor class also has a dot class that randomly places dots across the meteor to show texture. Additionally the meteor is rotated every frame to further show movement. The meteor class also has a trail subclass that displays a fiery trail behind the meteor. To display this I decided that every frame, a new trail class is initialized and displays a dot (two dots for each wave function). cos and sin functions where used to make the trail look 'wavey'. Additionally every frame the classes size and alpha color value is decreased. This is done to make it look the trail is moving with the meteor. After the alpha value is equal to 0 the class is removed to save memory. Finally, each meteor class is removed once it is no longer shown on screen to save memory
+
