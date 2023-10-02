@@ -46,12 +46,12 @@ void draw() {
   p2.satellite.display();
   p2.satellite.orbit();
 
-  // Random chance to spawn a meteor
+  // random chance to spawn a meteor
   if (random(1) < 0.01) {
     meteors.add(new Meteor(width, random(height)));
   }
   
-  // Display the trails first so they appear behind the meteors
+  
   for (int i = trails.size() - 1; i >= 0; i--) {
     Trail t = trails.get(i);
     t.update();
@@ -62,20 +62,20 @@ void draw() {
     }
   }
 
-  // Then update and display the meteors
+ 
   for (int i = meteors.size() - 1; i >= 0; i--) {
     Meteor m = meteors.get(i);
     m.update();
     m.display();
     
-    // Set the amplitude to be slightly greater than the diameter of the meteor
-    float amplitude = m.size/2.7;  // You can adjust the "+ 5" for how much greater you want the amplitude to be
     
-    float yOscillationSin = sin(frameCount * TWO_PI / 5) * amplitude;  // Adjust for vertical oscillation using sine
-    float yOscillationCos = cos(frameCount * TWO_PI / 5) * amplitude;  // Adjust for vertical oscillation using cosine
+    float amplitude = m.size/3;  // changles amplitude to match astroid
     
-    trails.add(new Trail(m.position.x, m.position.y + yOscillationSin));  // Sine wave trail
-    trails.add(new Trail(m.position.x, m.position.y + yOscillationCos));  // Cosine wave trail
+    float oscillationSin = sin(frameCount * TWO_PI / 5) * amplitude;  
+    float oscillationCos = cos(frameCount * TWO_PI / 5) * amplitude;  
+    
+    trails.add(new Trail(m.position.x, m.position.y + oscillationSin));  
+    trails.add(new Trail(m.position.x, m.position.y + oscillationCos)); 
     
     if (m.position.x + m.size < 0) {
       meteors.remove(i);
