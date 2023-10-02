@@ -1,12 +1,11 @@
 Planet p1;
 Planet p2;
+float t;
+int rev;
 ArrayList<Meteor> meteors = new ArrayList<Meteor>();
 ArrayList<Trail> trails = new ArrayList<Trail>();
 
-Star star1 = new Star(50, 50);
-Star star2 = new Star(100, 100);
-Star star3 = new Star(200, 200);
-Star star4 = new Star(100, 400);
+Star s1, s2, s3, s4;
 
 void setup() {
   size(800, 600);
@@ -14,10 +13,26 @@ void setup() {
   p1.satellite = new Satellite(p1, 80);
   p2 = new Planet(-200, 400, 100, color(201, 28, 12), 1);
   p2.satellite = new Satellite(p2, 100);
+  t = 0;
+  s1 = new Star(80, 150);
+  s2 = new Star(300, 500);
+  s3 = new Star(500, 200);
+  s4 = new Star(700, 350);
+  rev = 1;
 }
 
 void draw() {
   background(0);
+  
+  
+  s1.display(t);
+  s2.display(t);
+  s3.display(t);
+  s4.display(t);
+  t = t + (rev * 0.01);
+  if (t > 1){ rev = -1;}
+  if (t < 0) { rev = 1;}
+  
   
   // planet 1 with satellite
   p1.display();
@@ -30,11 +45,6 @@ void draw() {
   p2.move();
   p2.satellite.display();
   p2.satellite.orbit();
-
-  star1.display();
-  star2.display();
-  star3.display();
-  star4.display();
 
   // Random chance to spawn a meteor
   if (random(1) < 0.01) {
@@ -70,5 +80,7 @@ void draw() {
     if (m.position.x + m.size < 0) {
       meteors.remove(i);
     }
+  }
+}
   }
 }
