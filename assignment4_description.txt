@@ -1,7 +1,7 @@
 # assignment4_CS324e
 Project Description
 
-Narrative: This animation presents a scene within a space. It features two Planet objects each with their own orbiting Satellite objects.
+Narrative: This animation presents a scene within a space. It features two Planet objects each with their own orbiting Satellite objects. It also features randomly generated meteors with particle trails.
 
 Planet.pde (Jaden Wood)
   Rather than creating a parent class and having Satellite extend Planet, I made Planet and Satellite separate classes. I then made Satellite a field within Planet. I ran into issues with the orbit of the Satellite around the Planet, and I found that making these objects fields of one another to be the easiest solution. The Planet class features two methods, display() and move(). move() both moves the object across the screen but also resets its position once off-screen.
