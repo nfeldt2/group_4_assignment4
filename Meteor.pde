@@ -4,57 +4,57 @@ class Meteor {
   float size;
   color meteorColor;
   ArrayList<Dot> textureDots;
-  float rotationAngle;  // Property for rotation
-  
+  float rotationAngle;  
   Meteor(float x, float y) {
     position = new PVector(x, y);
-    // random direction (still right to left)
     float angle = PI + random(-0.2, 0.2);
     float speed = random(3, 5);
     velocity = new PVector(cos(angle) * speed, sin(angle) * speed);
-    size = random(20, 50);
+    size = random(10, 35);
     meteorColor = color(150, 150, 150);
     textureDots = new ArrayList<Dot>();
-    int numDots = int(random(5, 15));
+    int numDots = int(random(5, 1));
     for (int i = 0; i < numDots; i++) {
       textureDots.add(new Dot());
     }
-    rotationAngle = random(TWO_PI);  // Initialize with a random rotation
+    rotationAngle = 0;  
   }
 
   void update() {
     position.add(velocity);
-    rotationAngle += .45;  // Adjust for desired rotation speed
+    // rotate meteor
+    rotationAngle += .45; 
   }
 
   void display() {
     pushMatrix();
-    translate(position.x, position.y);  // Move the origin to the meteor's center
-    rotate(rotationAngle);  // Apply the rotation
+    translate(position.x, position.y); 
+    rotate(rotationAngle);  
     fill(meteorColor);
-    ellipse(0, 0, size, size);  // Draw the meteor at the origin (because we've moved the origin)
+    ellipse(0, 0, size, size);  
     for (Dot d : textureDots) {
       d.display();
     }
-    popMatrix();  // Restore the original transformation state
+    popMatrix();  
   }
   
-  // Inner class to represent each dot of the texture
+  // class within meteor that gives texture
   class Dot {
-    float xOff;  // X offset from the center of the meteor
-    float yOff;  // Y offset from the center of the meteor
+    float xOff;  
+    float yOff;  
     float dotSize;
     
     Dot() {
-      float angle = random(TWO_PI);
-      float radius = random(size / 2);  // Ensure dot remains within meteor
+      // calculate size of meteor
+      float angle = random(2*PI);
+      float radius = random(2, size / 2);  
       xOff = cos(angle) * radius;
       yOff = sin(angle) * radius;
       dotSize = random(2, 5);
     }
     
     void display() {
-      fill(100, 100, 100);  // Darker gray for the texture dots
+      fill(100, 100, 100); 
       ellipse(xOff, yOff, dotSize, dotSize);
     }
   }
@@ -62,25 +62,25 @@ class Meteor {
 
 
 class Trail extends Meteor {
+  float trailSize;
   
   Trail(float x, float y) {
     super(x, y);
-    size = 20;
-    meteorColor = color(255, 100, 0, 150); // Semi-transparent fiery color
+    trailSize = 15;
+    meteorColor = color(255, 100, 0, 150); 
   }
 
   @Override
   void display() {
     fill(meteorColor);
-    ellipse(position.x, position.y, size, size);
-    // No dots for the trail
+    ellipse(position.x, position.y, trailSize, trailSize);
+
   }
 
   @Override
   void update() {
-    // Gradually fade out the trail and decrease its size
+    
     meteorColor = color(red(meteorColor), green(meteorColor), blue(meteorColor), alpha(meteorColor) - 3);
-    size *= 0.95;
+    trailSize *= 0.95;
   }
 }
-
