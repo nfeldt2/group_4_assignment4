@@ -8,6 +8,7 @@ class Meteor {
   
   Meteor(float x, float y) {
     position = new PVector(x, y);
+    // random direction (still right to left)
     float angle = PI + random(-0.2, 0.2);
     float speed = random(3, 5);
     velocity = new PVector(cos(angle) * speed, sin(angle) * speed);
